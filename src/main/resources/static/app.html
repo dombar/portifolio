@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Manager</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <h1>Portfolio Manager</h1>
+            <div class="header-user">
+                <span id="logged-user"></span>
+                <button class="btn btn-secondary btn-sm" id="btn-logout">Sair</button>
+            </div>
+        </div>
+    </header>
+
+    <div id="message-banner" class="message-banner hidden"></div>
+
+    <nav class="tabs">
+        <button class="tab active" data-tab="report">Relatório</button>
+        <button class="tab" data-tab="projects">Projetos</button>
+        <button class="tab" data-tab="members">Membros</button>
+    </nav>
+
+    <main class="container">
+        <section id="tab-report" class="tab-panel active">
+            <div class="panel-header">
+                <h2>Relatório do Portfólio</h2>
+                <button class="btn btn-primary" id="btn-refresh-report">Atualizar relatório</button>
+            </div>
+            <div id="report-content" class="cards-grid">
+                <p class="placeholder">Clique em "Atualizar relatório" para carregar os dados.</p>
+            </div>
+        </section>
+
+        <section id="tab-projects" class="tab-panel">
+            <div class="panel-header">
+                <h2>Projetos</h2>
+                <button class="btn btn-primary" id="btn-refresh-projects">Atualizar lista</button>
+            </div>
+
+            <div class="card">
+                <h3>Novo projeto</h3>
+                <form id="form-create-project" class="form-grid">
+                    <label>
+                        Nome
+                        <input type="text" name="nome" required>
+                    </label>
+                    <label>
+                        Data início
+                        <input type="date" name="dataInicio" required>
+                    </label>
+                    <label>
+                        Previsão término
+                        <input type="date" name="previsaoTermino" required>
+                    </label>
+                    <label>
+                        Orçamento total
+                        <input type="number" name="orcamentoTotal" step="0.01" min="0" required>
+                    </label>
+                    <label>
+                        Gerente
+                        <select name="gerenteId" id="select-gerente" required>
+                            <option value="">Selecione um membro sincronizado</option>
+                        </select>
+                    </label>
+                    <label class="full-width">
+                        Descrição
+                        <textarea name="descricao" rows="2"></textarea>
+                    </label>
+                    <div class="full-width">
+                        <button type="submit" class="btn btn-primary">Criar projeto</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card">
+                <h3>Lista de projetos</h3>
+                <div id="projects-table-container">
+                    <p class="placeholder">Nenhum projeto carregado.</p>
+                </div>
+            </div>
+
+            <div id="project-detail" class="card hidden">
+                <div class="panel-header">
+                    <h3>Detalhe do projeto</h3>
+                    <button class="btn btn-secondary" id="btn-close-detail">Fechar</button>
+                </div>
+                <div id="project-detail-content"></div>
+            </div>
+        </section>
+
+        <section id="tab-members" class="tab-panel">
+            <div class="panel-header">
+                <h2>Membros</h2>
+                <button class="btn btn-primary" id="btn-refresh-members">Atualizar lista</button>
+            </div>
+
+            <div class="card">
+                <h3>Novo membro (API externa)</h3>
+                <form id="form-create-member" class="form-grid">
+                    <label>
+                        Nome
+                        <input type="text" name="nome" required>
+                    </label>
+                    <label>
+                        Atribuição
+                        <select name="atribuicao" required>
+                            <option value="GERENTE">GERENTE</option>
+                            <option value="FUNCIONARIO">FUNCIONARIO</option>
+                        </select>
+                    </label>
+                    <div class="full-width">
+                        <button type="submit" class="btn btn-primary">Criar membro externo</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card">
+                <h3>Membros externos</h3>
+                <div id="external-members-container">
+                    <p class="placeholder">Nenhum membro externo carregado.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Membros sincronizados (sessão)</h3>
+                <div id="synced-members-container">
+                    <p class="placeholder">Nenhum membro sincronizado nesta sessão.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
