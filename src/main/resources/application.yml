@@ -3,9 +3,33 @@ spring:
     name: portifolio
   profiles:
     active: local
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 20
+          fetch_size: 50
+        order_inserts: true
+        order_updates: true
+        connection:
+          provider_disables_autocommit: true
+  datasource:
+    hikari:
+      pool-name: portifolio-pool
+      auto-commit: false
+      connection-timeout: 30000
+      idle-timeout: 300000
+      max-lifetime: 1200000
+      minimum-idle: 2
+      maximum-pool-size: 10
 
 server:
   port: 8080
+  undertow:
+    threads:
+      io: 4
+      worker: 20
 
 springdoc:
   api-docs:
@@ -16,6 +40,10 @@ springdoc:
 portfolio:
   external-members:
     base-url: http://localhost:8080/api/external
+    connect-timeout: 5s
+    read-timeout: 10s
+    max-connections: 50
+    max-idle-time: 30s
   security:
     username: admin
     password: admin123
