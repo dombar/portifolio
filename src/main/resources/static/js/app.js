@@ -38,7 +38,7 @@ function logout() {
 
 function getAuthHeader() {
     const token = sessionStorage.getItem(AUTH_TOKEN_KEY);
-    return token ? 'Basic ' + token : '';
+    return token ? `Bearer ${token}` : '';
 }
 
 function initTabs() {

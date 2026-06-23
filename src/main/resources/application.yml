@@ -47,3 +47,6 @@ portfolio:
   security:
     username: admin
     password: admin123
+  jwt:
+    secret: portifolio-jwt-secret-key-min-32-chars!!
+    expiration: 8h

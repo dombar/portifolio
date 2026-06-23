@@ -22,8 +22,6 @@ async function handleLogin(e) {
     submitBtn.disabled = true;
     submitBtn.textContent = 'Validando...';
 
-    const token = btoa(`${user}:${pass}`);
-
     try {
         const response = await fetch('/api/auth/login', {
             method: 'POST',
@@ -42,7 +40,13 @@ async function handleLogin(e) {
             return;
         }
 
-        sessionStorage.setItem(AUTH_TOKEN_KEY, token);
+        const data = await response.json();
+        if (!data.accessToken) {
+            showLoginError('Resposta de autenticação inválida.');
+            return;
+        }
+
+        sessionStorage.setItem(AUTH_TOKEN_KEY, data.accessToken);
         sessionStorage.setItem(AUTH_USER_KEY, user);
         window.location.href = '/app.html';
     } catch (_) {
