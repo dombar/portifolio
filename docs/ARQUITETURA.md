@@ -261,12 +261,25 @@ Formato de resposta:
 
 ---
 
+## Cronograma de entregas
+
+| Data | Parte | Conteúdo |
+|------|-------|----------|
+| 22/06/2026 | 1 | Fases 0–2: scaffold, entidades, repositórios, validators e testes de regras |
+| 22/06/2026 | 2 | Fases 3–4: CRUD de projetos, API externa de membros, WebClient |
+| 23/06/2026 | 3–5 | Fases 5–9: alocação, relatório, Security/Swagger, JaCoCo 90%, H2/Undertow, UI web e JWT |
+
+As entregas foram publicadas em PRs sequenciais no GitHub (uma parte por branch). Ver [PLANO_DESENVOLVIMENTO.md](PLANO_DESENVOLVIMENTO.md#cronograma-de-execução).
+
+---
+
 ## Segurança
 
-- Spring Security com autenticação HTTP Basic
+- Spring Security com autenticação **JWT** (stateless)
+- Login em `POST /api/auth/login` retorna `accessToken` (validade configurável em `portfolio.jwt.expiration`)
 - Usuário in-memory configurado em `application.yml`
 - Endpoints `/api/external/**` e `/swagger-ui/**` liberados (mock externo e docs)
-- Demais endpoints exigem autenticação
+- Demais endpoints exigem header `Authorization: Bearer <token>`
 
 ---
 
@@ -274,7 +287,7 @@ Formato de resposta:
 
 | Princípio | Aplicação |
 |-----------|-----------|
-| **S** — Single Responsibility | Controllers só roteiam; regras em `service/rule/`; mappers só convertem |
+| **S** — Single Responsibility | Controllers só roteiam; regras em `service/validator/`; mappers só convertem |
 | **O** — Open/Closed | Validators extensíveis sem alterar services existentes |
 | **L** — Liskov Substitution | `MemberExternalClient` interface com implementação substituível |
 | **I** — Interface Segregation | DTOs de request/response separados por operação |
