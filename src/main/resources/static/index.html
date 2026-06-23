@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Manager — Login</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="login-page">
+    <header class="header">
+        <div class="header-top">
+            <h1>Portfolio Manager</h1>
+            <div class="header-links login-links">
+                <a href="/swagger-ui.html" target="_blank">Swagger</a>
+                <a href="/h2-console" target="_blank">H2 Console</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="login-container">
+        <div class="login-card">
+            <h2>Entrar</h2>
+            <p class="login-subtitle">Informe suas credenciais para acessar o portfólio.</p>
+
+            <div id="login-error" class="login-error hidden"></div>
+
+            <form id="form-login" class="login-form">
+                <label>
+                    Usuário
+                    <input type="text" id="login-user" name="username" required autocomplete="username">
+                </label>
+                <label>
+                    Senha
+                    <input type="password" id="login-pass" name="password" required autocomplete="current-password">
+                </label>
+                <button type="submit" class="btn btn-primary btn-full" id="btn-login">Entrar</button>
+            </form>
+        </div>
+    </main>
+
+    <script src="/js/login.js"></script>
+</body>
+</html>
